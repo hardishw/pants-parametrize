@@ -1,0 +1,63 @@
+# Requirements for the default Pants resolve
+# Please try to keep this list alphabetized for ease of maintenance.
+absl-py==1.0.0
+av==10.0.0
+backoff==2.2.1
+beautifulsoup4==4.11.1
+boto3==1.24.59
+botocore>=1.27.59,<1.28.0
+dagit==1.1.17
+dagster==1.1.17
+dagster-graphql==1.1.17
+dagster-pandas==0.17.17
+dagster-postgres==0.17.17
+dagster-aws==0.17.17
+dagster-k8s==0.17.17
+defusedxml==0.7.1
+easynmt==2.0.2
+elasticsearch==7.10.0
+faker==15.3.2
+fasttext==0.9.2
+fsspec==2023.1.0
+grpcio>=1.32.0
+huggingface_hub==0.15.1
+nltk==3.6.5
+numpy==1.24.2
+pandas==1.5.3
+pillow==9.4.0
+protobuf==3.20.2
+psutil==5.9.4
+psycopg2-binary==2.9.3
+pybind11>=2.2
+pycountry==22.3.5
+python-magic==0.4.27
+pytorch-lightning==1.9.4
+pytz==2021.3
+requests==2.30.0
+s3fs==2023.1.0
+setuptools==58.0.4
+smart_open[s3]==5.2.1
+stream-unzip==0.0.86
+tensorboard==2.11.2
+torch==1.12.0
+torchvision==0.13.0
+tqdm>=4.41.0
+watchtower>=3.0.1
+tensorrt==8.6.1.post1
+cupy-cuda12x==13.1.0
+wrapt==1.16.0
+qdrant-client==1.8.2
+transformers>=4.4.0
+tensorrt-libs==8.6.1
+onnx==1.16.0
+
+# TODO: the following dependencies should be test-only; we may need
+# multiple Pants resolves to support that. We could also look at writing tests
+# about what depends on these libraries, or at visibility rules introduced in
+# Pants 2.16: https://blog.pantsbuild.org/visibility-feature-in-pants-2-16/
+# Again, please try to keep this list alphabetized for ease of maintenance.
+moto[s3]==4.0.3
+PyHamcrest==2.0.3
+proto-matcher==0.0.3
+pytest==7.1.1
+testcontainers==3.7.0

@@ -1,0 +1,99 @@
+*.class
+*.iml
+*.ipr
+*.iws
+*.lock_message
+*.pyc
+__pycache__/
+*.hprof
+*.swp
+*.sublime-project
+*.sublime-workspace
+*~
+*#
+.#*
+.envrc
+.DS_Store
+.build.properties
+.buildcache/
+.coverage*
+.emacs.desktop*
+.idea
+/.vscode/
+.cache
+.pants.d
+# TODO: We can probably delete these 3. They have not been used in a long time, if ever.
+#  In fact there's a lot of things we can clean up in this .gitignore. It's not harmful
+#  to keep them, but it's nice to keep things tight and avoid questions/confusion.
+.pants.run
+.pants.workdir.file_lock
+.pants.stats
+# TODO: .pids is no longer in use (it is now under .pants.d) but Pants developers switching
+#  to older branches will still see files created under .pids, which will then linger when they
+#  switch back to main. So we keep this in main's .gitignore for a while. We can remove this,
+#  to reduce confusion, once we're no longer developing in branches prior to 2.19.x.
+.pids
+.project
+.settings
+.classpath
+.factorypath
+.python
+.python-version
+.pydevproject
+.pytest_cache/
+codegen/classes/
+htmlcov/
+out/
+# remove root-level /bin, which is created by Eclipse
+/bin/
+/build-support/*.pex
+/build-support/virtualenv-*
+/build-support/virtualenv.dist/
+/build-support/phab/
+/build-support/twine-deps.venv/
+/dist/
+/lib/
+arc.sh
+BUILD.release*
+/pants.pex
+pants.ini.sitegen
+target
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+.mypy_cache/
+/.pants
+/.pants.rc
+/.venv
+.tool-versions
+TAGS
+# Local .terraform directories
+**/.terraform/*
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+!**/state/*.tfstate
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version
+# control as they are data points which are potentially sensitive and subject
+# to change depending on the environment.
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

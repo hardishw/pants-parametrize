@@ -1,0 +1,2 @@
+# dagster requires 1.x but doesn't correctly constrain version; 2.x has breaking API changes.
+pydantic<2.0

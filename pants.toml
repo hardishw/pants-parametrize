@@ -1,0 +1,116 @@
+[GLOBAL]
+# We're using an RC release; these tend to be stable.
+pants_version = "2.21.0"
+
+backend_packages.add = [
+    # Python support
+    "pants.backend.python",
+    "pants.backend.python.lint.black",
+    "pants.backend.python.typecheck.mypy",
+    # "pants.backend.experimental.python.lint.ruff",
+    # Python publication using twine
+    "pants.backend.experimental.python",
+    # Go support
+    "pants.backend.experimental.go",
+    # Protobuf support
+    "pants.backend.codegen.protobuf.python",
+    "pants.backend.experimental.codegen.protobuf.go",
+    # Build file formatting
+    "pants.backend.build_files.fmt.black",
+    # Docker support
+    "pants.backend.docker",
+    # Shell support
+    "pants.backend.shell",
+    # S3 support
+    "pants.backend.url_handlers.s3",
+]
+
+build_patterns = ["BUILD.pants"]
+build_file_prelude_globs = ["build_support/pants_macros/*.py", "build_support/pants_macros/*/*.py"]
+unmatched_build_file_globs = "error"
+
+# Increase size of in-memory cache, particularly to help avoid frequent
+# re-download/-compilation of Go modules
+pantsd_max_memory_usage = "6GiB"
+
+[docker]
+# TODO: Set this up to be repo specific and not rely on laptop configs:
+# https://www.pantsbuild.org/docs/docker#docker-authentication
+env_vars = ["HOME", "USER", "PATH", "AWS_PROFILE", "DOCKER_HOST", "DOCKER_TLS_CERTDIR"]
+# https://www.pantsbuild.org/docs/tagging-docker-images#using-env-vars-to-include-dynamic-data-in-tags
+build_args = ["EXTRACT_DOCKER_TAG"]
+
+[anonymous-telemetry]
+enabled = false
+
+[source]
+root_patterns = [
+    "/pants/plugins",
+    "/src",
+    "/test",
+]
+
+[tailor]
+build_file_name = "BUILD.pants"
+
+[protoc]
+# See: https://www.pantsbuild.org/docs/reference-protoc
+version = "23.1"
+known_versions = [
+    "23.1 | linux_arm64  | f174eb3a6bd812e9946be3a9ef3fb8f8ac4a6f8acd0a01c928fb2fecb22b6fb0 | 2878968",
+    "23.1 | linux_x86_64 | 031f8e7504eb359df58389b31752f8081c01b01132a2f3f768a3792ac4b06f3f | 2915996",
+    "23.1 | macos_arm64  | 8d0af9adbbde1a9791d10125f4742a4c9fa84f85ee46fe69adde6bf5e8a4a428 | 1975112",
+    "23.1 | macos_x86_64 | 5d0367dfd58ea894f87d1d6efbd800bf52820842e9151d265db17471bc69fe94 | 2008572",
+]
+
+[python]
+enable_resolves = true
+default_resolve = "default"
+interpreter_constraints = [">=3.9.15,<3.10"]
+
+[python.resolves_to_constraints_file]
+default = "3rdparty/python/constraints.txt"
+
+[python-infer]
+# resolve imports in strings, e.g. for conftest plugins
+string_imports = true
+# turn dependency inference failures into errors instead of warnings
+unowned_dependency_behavior = "error"
+
+[python.resolves_to_interpreter_constraints]
+object_detection = ["==3.10.*"]
+
+[python.resolves]
+default = "lockfiles/default.lock"
+build_tools = "lockfiles/build_tools.lock"
+object_detection = "lockfiles/object.lock"
+
+[python-protobuf]
+mypy_plugin = true
+
+[export]
+py_resolve_format = "symlinked_immutable_virtualenv"
+
+# [ruff]
+# install_from_resolve = "build_tools"
+# interpreter_constraints = [">=3.9.15,<3.10"]
+
+[black]
+install_from_resolve = "build_tools"
+interpreter_constraints = [">=3.9.15,<3.10"]
+
+[mypy]
+install_from_resolve = "build_tools"
+
+[test]
+output = "all"
+extra_env_vars = ["AWS_PROFILE", "AWS_REGION"]
+
+[twine]
+install_from_resolve = "build_tools"
+interpreter_constraints = [">=3.9.15,<3.10"]
+
+[golang]
+# this should align with the lowest `go <version>` statement that we have
+# in a `go.mod` in the repo
+minimum_expected_version = "1.20"

@@ -1,0 +1,4 @@
+protobuf_sources(
+    **parametrize("py39", python_interpreter_constraints=[">=3.9.15","<3.10"]),
+    **parametrize("py310", python_interpreter_constraints=["==3.10.*"]),
+)

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package protos.test;
+option go_package = "github.com/hardishw/pants-parametrize/protos";
+
+enum MyType {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_ONE = 1;
+    TYPE_TWO = 2;
+}

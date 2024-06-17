@@ -1,0 +1,21 @@
+python_requirements(
+    module_mapping={"pillow": ["PIL"], "cupy-cuda12x": ["cupy"]},
+    overrides={
+        "pytorch-lightning": {
+            "dependencies": ["#setuptools", "#tensorboard"],
+        },
+        "fasttext": {"dependencies": ["#pybind11", "#setuptools"]},
+    },
+)
+
+python_requirements(
+    name="object_detection",
+    resolve="object_detection",
+    source="requirements_object.txt",
+    module_mapping={"pillow": ["PIL"], "cupy-cuda12x": ["cupy"]},
+    overrides={
+        "pytorch-lightning": {
+            "dependencies": ["#setuptools", "#tensorboard"],
+        }
+    },
+)
